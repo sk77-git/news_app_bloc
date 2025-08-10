@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_bloc/data/models/news_model.dart';
 
-class NewsListCard extends StatelessWidget {
-  const NewsListCard({super.key, required this.data});
+class NewsCard extends StatelessWidget {
+  const NewsCard({super.key, required this.data});
 
   final NewsModel data;
 

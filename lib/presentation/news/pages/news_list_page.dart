@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:news_app_bloc/presentation/news/blocs/news_bloc.dart';
-import 'package:news_app_bloc/presentation/news/widgets/news_list_card.dart';
+import 'package:news_app_bloc/presentation/news/widgets/news_list_view.dart';
 
 class NewsListPage extends StatelessWidget {
   const NewsListPage({super.key});
@@ -18,18 +17,7 @@ class NewsListPage extends StatelessWidget {
             if (state is NewsLoading) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is NewsLoaded) {
-              return ListView.builder(
-                itemCount: state.data.length,
-                itemBuilder: (context, index) {
-                  final news = state.data[index];
-                  return InkWell(
-                    onTap: () {
-                      context.push('/detail', extra: news.url);
-                    },
-                    child: NewsListCard(data: news),
-                  );
-                },
-              );
+              return NewsListView(newsList: state.data);
             } else if (state is NewsError) {
               return Center(child: Text('Error: ${state.message}'));
             } else {
