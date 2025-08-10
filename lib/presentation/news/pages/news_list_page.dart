@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:news_app_bloc/presentation/news/blocs/news_bloc.dart';
+import 'package:news_app_bloc/presentation/news/widgets/news_list_card.dart';
 
 class NewsListPage extends StatelessWidget {
   const NewsListPage({super.key});
@@ -17,12 +19,14 @@ class NewsListPage extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             } else if (state is NewsLoaded) {
               return ListView.builder(
-                itemCount: state.newsList.length,
+                itemCount: state.data.length,
                 itemBuilder: (context, index) {
-                  final news = state.newsList[index];
-                  return ListTile(
-                    title: Text(news.title),
-                    subtitle: Text(news.description),
+                  final news = state.data[index];
+                  return InkWell(
+                    onTap: () {
+                      context.push('/detail', extra: news.url);
+                    },
+                    child: NewsListCard(data: news),
                   );
                 },
               );

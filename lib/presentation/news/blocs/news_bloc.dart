@@ -35,12 +35,12 @@ class NewsInitial extends NewsState {}
 class NewsLoading extends NewsState {}
 
 class NewsLoaded extends NewsState {
-  final List<NewsModel> newsList;
+  final List<NewsModel> data;
 
-  NewsLoaded(this.newsList);
+  NewsLoaded(this.data);
 
   @override
-  List<Object?> get props => [newsList];
+  List<Object?> get props => [data];
 }
 
 class NewsError extends NewsState {

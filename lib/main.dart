@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:news_app_bloc/presentation/news/pages/news_list_page.dart';
+
+import 'core/routes/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,12 +11,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'News App Bloc',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const NewsListPage(),
+      routerConfig: router,
     );
   }
 }
